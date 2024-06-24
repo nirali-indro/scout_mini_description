@@ -1,0 +1,73 @@
+<?xml version="1.0" ?>
+<robot name="my_robot">
+
+    <!-- base footprint -->
+    <link name="base_footprint"/>
+
+    <!-- Link for the base -->
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <mesh filename="package://scout_mini_description/urdf/meshes/New_Slam.dae" scale="0.0025 0.0025 0.0025"/>
+            </geometry>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://scout_mini_description/urdf/meshes/New_Slam.dae" scale="0.0025 0.0025 0.0025"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- Link for the sensor -->
+    <link name="zed_link">
+        <visual>
+            <origin xyz="0 0.13 0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <mesh filename="package://scout_mini_description/urdf/meshes/zed_v3.dae" scale="0.0025 0.0025 0.0025"/>
+            </geometry>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://scout_mini_description/urdf/meshes/zed_v3.dae" scale="0.0025 0.0025 0.0025"/>
+            </geometry>
+        </collision>
+        
+    </link>
+
+    <link name="lidar_link">
+        <visual>
+            <origin xyz="0 -0.035 0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <mesh filename="package://scout_mini_description/urdf/meshes/lidar.dae" scale="0.0025 0.0025 0.0025"/>
+            </geometry>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://scout_mini_description/urdf/meshes/lidar.dae" scale="0.0025 0.0025 0.0025"/>
+            </geometry>
+        </collision>
+        
+    </link>
+
+
+    <!-- Joint connecting base to sensor -->
+
+    <joint name="base_footprint_joint" type="fixed">
+        <origin xyz="0 0 0.43" rpy="0 0 0" />
+        <parent link="base_footprint" />
+        <child link="base_link" />
+    </joint>
+
+    <joint name="base_to_zed" type="fixed">
+        <parent link="base_link"/>
+        <child link="zed_link"/>
+        <origin xyz="0.8 0.0 0.463" rpy="0 0 0"/>
+    </joint>
+
+    <joint name="base_to_lidar" type="fixed">
+        <parent link="base_link"/>
+        <child link="lidar_link"/>
+        <origin xyz="0.76 0.0 0.255" rpy="0 0 0"/>
+    </joint>
+
+</robot>

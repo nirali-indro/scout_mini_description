@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<robot name="my_robot">
+
+    <!-- base footprint -->
+    <link name="base_footprint"/>
+
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <mesh filename="package://scout_mini_description/urdf/meshes/Mini + IC(1).dae" scale="0.0025 0.0025 0.0025"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <joint name="base_footprint_joint" type="fixed">
+        <origin xyz="0 0 0.43" rpy="0 0 0" />
+        <parent link="base_footprint" />
+        <child link="base_link" />
+    </joint>
+
+</robot>
